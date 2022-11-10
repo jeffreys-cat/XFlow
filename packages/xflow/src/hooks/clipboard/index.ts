@@ -16,8 +16,6 @@ export const useClipboard = (options?: Clipboard.Options) => {
         } else {
           const graphClipboard = new Clipboard(options)
 
-          graphClipboard.init(graph)
-
           return graphClipboard
         }
       }

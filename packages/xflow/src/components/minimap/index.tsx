@@ -12,26 +12,19 @@ export const Minimap: FC<Omit<MiniMap.Options, 'container'>> = (props) => {
       const minimap = graph.getPlugin<MiniMap>(MiniMap.name)
 
       if (minimap) {
-        minimap.dispose()
         // TODO: add setOption function
         // minimap.setOptions(options)
-
-        minimap.init(graph)
       } else {
-        const minimap = new MiniMap(options)
+        const GraphMinimap = new MiniMap(options)
 
-        minimap.init(graph)
-
-        graph.use(minimap)
+        graph.use(GraphMinimap)
       }
     }
   }, [mapRef, props, graph])
 
   useEffect(() => {
-    if (graph) {
-      initMinimap()
-    }
-  }, [mapRef, graph])
+    initMinimap()
+  }, [mapRef, graph, initMinimap])
 
   return <div ref={mapRef} />
 }

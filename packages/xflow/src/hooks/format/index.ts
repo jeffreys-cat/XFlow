@@ -10,8 +10,6 @@ export const useFormat = (formatOptions?: Export.ToImageOptions) => {
     if (graph) {
       const format = new Export()
 
-      format.init(graph)
-
       graph.use(format)
 
       return format

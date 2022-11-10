@@ -25,8 +25,6 @@ export const useBindKey = (options: BindKeyOptions) => {
       if (!keyboard) {
         const graphKeyboard = new Keyboard({ enabled: true })
 
-        graphKeyboard.init(graph)
-
         graph.use(graphKeyboard)
 
         return graphKeyboard
@@ -41,6 +39,10 @@ export const useBindKey = (options: BindKeyOptions) => {
 
     if (keyboard) {
       keyboard.bindKey(options.keys, options.callback, options.action)
+
+      return () => {
+        keyboard.unbindKey(options.keys, options.action)
+      }
     }
   }, [graph, options, getKeyboard])
 }
